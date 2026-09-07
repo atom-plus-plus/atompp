@@ -32,6 +32,10 @@ const CAPS = {
 	// OpenAI
 	'gpt-4o':      { context: 128000, tools: true, vision: true },
 	'gpt-4o-mini': { context: 128000, tools: true, vision: true, fast: true },
+	// Not covered by the gpt-4/gpt-5 heuristic below, which would also give it a 128k window; the
+	// real one is 1.05M (OpenRouter models API, 2026-09-06) and it reads images. Without this row the
+	// gateway picker offers it while the composer refuses attachments and the meter sizes it wrong.
+	'gpt-6-astra': { context: 1050000, tools: true, vision: true },
 	'o3-mini':     { context: 200000, tools: true, reasoning: true },
 	'o1':          { context: 200000, tools: true, reasoning: true },
 	'o1-mini':     { context: 128000, tools: false, reasoning: true },   // o1-mini has no function calling
