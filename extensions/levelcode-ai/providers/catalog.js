@@ -29,6 +29,12 @@ const CAPS = {
 	'claude-opus-4-8':           { context: 200000, tools: true, vision: true, caching: true },
 	'claude-sonnet-4-6':         { context: 200000, tools: true, vision: true, caching: true },
 	'claude-haiku-4-5-20251001': { context: 200000, tools: true, vision: true, fast: true },
+	// Fable reaches the composer two ways: through the gateway as the OpenRouter basename (dotted
+	// 5.1), and BYOK-native as the dashed id. Neither had a row, so both fell to the claude-*
+	// heuristic's 200k — a fifth of the real window. Fable 5 / 5.1 are Pro-tier from 2026-09-08.
+	'claude-fable-5':   { context: 1000000, tools: true, vision: true, caching: true },
+	'claude-fable-5.1': { context: 1000000, tools: true, vision: true, caching: true },
+	'claude-fable-5-1': { context: 1000000, tools: true, vision: true, caching: true },
 	// OpenAI
 	'gpt-4o':      { context: 128000, tools: true, vision: true },
 	'gpt-4o-mini': { context: 128000, tools: true, vision: true, fast: true },

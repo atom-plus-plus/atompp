@@ -27,6 +27,12 @@ test('modelCaps: gpt-6-astra is an explicit row, not the gpt-4/5 heuristic', () 
 	assert.strictEqual(C.supportsVisionForModel('openai', 'gpt-6-astra'), true);
 	assert.strictEqual(C.contextWindowFor('openai', 'gpt-6-astra'), 1050000);
 });
+test('modelCaps: Fable 5 / 5.1 carry the 1M window under every id they arrive as', () => {
+	for (const id of ['anthropic/claude-fable-5', 'anthropic/claude-fable-5.1', 'claude-fable-5-1']) {
+		assert.deepStrictEqual(C.modelCaps(id), { context: 1000000, tools: true, vision: true, caching: true }, id);
+		assert.strictEqual(C.contextWindowFor('openai', id), 1000000, id);
+	}
+});
 test('modelCaps: family heuristics for unknown ids', () => {
 	assert.strictEqual(C.modelCaps('o4-mini').reasoning, true);       // o-series
 	assert.strictEqual(C.modelCaps('claude-3-5-haiku-latest').vision, true);
